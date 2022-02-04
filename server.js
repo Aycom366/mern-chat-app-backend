@@ -82,7 +82,7 @@ const start = async () => {
       //if user din do anything, it will goes off to save bandWidth
       pingTimeout: 60000,
       cors: {
-        origin: "http://localhost:3000",
+        origin: "https://aydotcom-chat.netlify.app",
         methods: ["GET", "POST"],
       },
     });
