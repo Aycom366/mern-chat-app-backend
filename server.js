@@ -4,12 +4,16 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
-//third party libraries
-const fileUpload = require("express-fileupload");
+//db
+const connectDb = require("./db/connectDb");
 
-const cors = require("cors");
-const helmet = require("helmet");
+//third party libraries
+
 const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
 
 const cloudinary = require("cloudinary").v2;
@@ -18,11 +22,6 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
-
-const cookieParser = require("cookie-parser");
-
-//database
-const connectDb = require("./db/connectDb");
 
 //routes
 const authRoutes = require("./routes/authRoute");
@@ -33,15 +32,20 @@ const messageRoutes = require("./routes/messageRoute");
 //middlewares
 const notFound = require("./middlewares/notFound");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
+const { frontendEndpoint } = require("./utils");
 
-app.use(cors());
 app.use(express.static("./public"));
+app.use(
+  cors({
+    cors: ["http://localhost:3000", "https://aydotcom-chat.netlify.app"],
+  })
+);
 app.use(express.json());
-app.use(fileUpload());
-app.use(morgan("dev"));
 app.use(helmet());
+app.use(fileUpload());
 app.use(mongoSanitize());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(morgan("dev"));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
@@ -82,7 +86,7 @@ const start = async () => {
       //if user din do anything, it will goes off to save bandWidth
       pingTimeout: 60000,
       cors: {
-        origin: "https://aydotcom-chat.netlify.app",
+        origin: frontendEndpoint,
         methods: ["GET", "POST"],
       },
     });

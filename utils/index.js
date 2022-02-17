@@ -5,6 +5,8 @@ const sendVerificationEmail = require("./sendVerificationEmail");
 const { isTokenValid, attachCookiesToBrowser } = require("./jwt");
 const createHash = require("./createHash");
 
+const frontendEndpoint = "http://localhost:3000";
+
 module.exports = {
   createTokenUser,
   sendResetPassword,
@@ -12,4 +14,5 @@ module.exports = {
   isTokenValid,
   attachCookiesToBrowser,
   sendVerificationEmail,
+  frontendEndpoint,
 };

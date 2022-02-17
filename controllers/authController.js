@@ -5,6 +5,7 @@ const {
   createTokenUser,
   sendResetPassword,
   sendVerificationEmail,
+  frontendEndpoint,
 } = require("../utils");
 const crypto = require("crypto");
 const Token = require("../models/Token");
@@ -160,7 +161,7 @@ const Register = async (req, res) => {
   //setting up infos to send to email
   const verificationToken = crypto.randomBytes(40).toString("hex");
 
-  const origin = "http://localhost:3000";
+  const origin = frontendEndpoint;
 
   const user = await User.create({
     name,
@@ -196,7 +197,7 @@ const forgotPassword = async (req, res) => {
   if (user) {
     const passwordtoken = crypto.randomBytes(70).toString("hex");
 
-    const origin = "http://localhost:3000";
+    const origin = frontendEndpoint;
 
     await sendResetPassword({
       name: user.name,

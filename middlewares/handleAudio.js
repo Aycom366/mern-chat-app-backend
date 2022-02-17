@@ -12,6 +12,7 @@ const handleAudio = async (req, res, next) => {
           "../public/audios/" + `${content.name}`
         );
         await content.mv(uploadLocation);
+
         //write the blob data to a file
         fs.writeFileSync(
           uploadLocation,
