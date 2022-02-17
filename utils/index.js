@@ -5,7 +5,7 @@ const sendVerificationEmail = require("./sendVerificationEmail");
 const { isTokenValid, attachCookiesToBrowser } = require("./jwt");
 const createHash = require("./createHash");
 
-const frontendEndpoint = "https://aydotcom-chat.herokuapp.com";
+const frontendEndpoint = "https://aydotcom-chat.netlify.app";
 
 module.exports = {
   createTokenUser,

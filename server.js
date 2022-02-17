@@ -83,7 +83,6 @@ const start = async () => {
       pingTimeout: 60000,
       cors: {
         origin: frontendEndpoint,
-        methods: ["GET", "POST"],
       },
     });
 
