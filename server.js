@@ -37,7 +37,7 @@ const { frontendEndpoint } = require("./utils");
 app.use(express.static("./public"));
 app.use(
   cors({
-    cors: ["http://localhost:3000", "https://aydotcom-chat.netlify.app"],
+    cors: [frontendEndpoint, "http://localhost:5000"],
   })
 );
 app.use(express.json());

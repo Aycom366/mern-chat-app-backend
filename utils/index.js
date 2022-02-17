@@ -5,7 +5,7 @@ const sendVerificationEmail = require("./sendVerificationEmail");
 const { isTokenValid, attachCookiesToBrowser } = require("./jwt");
 const createHash = require("./createHash");
 
-const frontendEndpoint = "http://localhost:3000";
+const frontendEndpoint = "https://aydotcom-chat.herokuapp.com";
 
 module.exports = {
   createTokenUser,
