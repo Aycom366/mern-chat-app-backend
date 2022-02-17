@@ -35,11 +35,7 @@ const errorHandlerMiddleware = require("./middlewares/error-handler");
 const { frontendEndpoint } = require("./utils");
 
 app.use(express.static("./public"));
-app.use(
-  cors({
-    cors: [frontendEndpoint, "http://localhost:5000"],
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(fileUpload());
